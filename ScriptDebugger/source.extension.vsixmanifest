@@ -5,7 +5,7 @@
   <Metadata>
     <Identity Id="ScriptProject" Version="|ScriptDebugger;GetVsixVersion|" Language="en-US" Publisher="Daniel Cazzulino" />
     <DisplayName>C# Script (.csx) Debugger</DisplayName>
-    <Description xml:space="preserve">Allows adding .csx script files to a C# NETStandard library project and debug them with F5.</Description>
+    <Description xml:space="preserve">Allows adding .csx script files to a C# NETStandard library project and debugging them with F5.</Description>
   </Metadata>
   <Installation>
     <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[16.0,)" />

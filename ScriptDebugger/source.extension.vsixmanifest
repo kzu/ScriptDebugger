@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<PackageManifest Version="2.0.0"
+                 xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011"
+                 xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
+  <Metadata>
+    <Identity Id="ScriptProject" Version="|ScriptDebugger;GetVsixVersion|" Language="en-US" Publisher="Daniel Cazzulino" />
+    <DisplayName>C# Script (.csx) Debugger</DisplayName>
+    <Description xml:space="preserve">Allows adding .csx script files to a C# NETStandard library project and debug them with F5.</Description>
+  </Metadata>
+  <Installation>
+    <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[16.0,)" />
+  </Installation>
+  <Prerequisites>
+    <Prerequisite Id="Microsoft.VisualStudio.Component.ManagedDesktop.Core" Version="[16.0,)" DisplayName="Managed Desktop Workload Core" />
+    <Prerequisite Id="Microsoft.Net.Component.4.7.2.SDK" Version="[16.0,)" DisplayName=".NET Framework 4.7.2 SDK" />
+    <Prerequisite Id="Microsoft.VisualStudio.Component.NuGet" Version="[16.0,)" DisplayName="NuGet package manager" />
+    <Prerequisite Id="Microsoft.VisualStudio.Component.Merq" Version="[16.0,)" DisplayName="Common Xamarin internal tools" />
+  </Prerequisites>
+  <Assets>
+    <Asset Type="Microsoft.VisualStudio.MefComponent" d:Source="Project" d:ProjectName="%CurrentProject%" Path="|%CurrentProject%;GetTargetPath|" />
+  </Assets>
+</PackageManifest>

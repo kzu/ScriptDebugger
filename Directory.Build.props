@@ -1,0 +1,22 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <PropertyGroup>
+    <SuppressNETCoreSdkPreviewMessage>true</SuppressNETCoreSdkPreviewMessage>
+    <ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>None</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
+    <LangVersion>preview</LangVersion>
+
+    <!-- We always target a single framework, so we don't need the added subdir -->
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <!-- We never emit runtime-specific assemblies, so opt-out of this. -->
+    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+
+    <AddSyntheticProjectReferencesForSolutionDependencies>false</AddSyntheticProjectReferencesForSolutionDependencies>
+
+    <DefaultItemExcludes>$(DefaultExcludeItems);*.binlog</DefaultItemExcludes>
+    <UseSharedCompilation>true</UseSharedCompilation>
+  </PropertyGroup>
+
+  <Target Name="GitVersion" />
+
+
+</Project>

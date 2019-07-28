@@ -1,0 +1,45 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <Sdk Name="Microsoft.Build.CentralPackageVersions" Version="2.0.46" />
+
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+
+    <OriginalProjectName>ScriptDebugger</OriginalProjectName>
+    <TargetVsixContainerName>ScriptDebugger.vsix</TargetVsixContainerName>
+    <CreateVsixContainer>true</CreateVsixContainer>
+    <GeneratePkgDefFile>false</GeneratePkgDefFile>
+    <IncludeDebugSymbolsInVSIXContainer>true</IncludeDebugSymbolsInVSIXContainer>
+    <IncludeDebugSymbolsInLocalVSIXDeployment>true</IncludeDebugSymbolsInLocalVSIXDeployment>
+
+    <!-- These are defined too late for the VSSDK targets, which fail on Microsoft.VSSDK.targets(680,5): error VSSDK1106 : The GenerateFileManifest -->
+    <BaseIntermediateOutputPath>obj</BaseIntermediateOutputPath>
+    <IntermediateOutputPath>obj\$(Configuration)</IntermediateOutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="GitInfo" PrivateAssets="all" />
+    <PackageReference Include="Clide" />
+    <PackageReference Include="Microsoft.VisualStudio.SDK" />
+    <PackageReference Include="Microsoft.VisualStudio.ProjectSystem.SDK" />
+    <PackageReference Include="Microsoft.VisualStudio.SDK.VsixSuppression" />
+    <PackageReference Include="Microsoft.VSSDK.BuildTools" />
+    <PackageReference Include="Microsoft.VisualStudio.ProjectSystem.Managed.VS" />
+    <PackageReference Include="Microsoft.VisualStudio.SDK.Analyzers" />
+    <PackageReference Include="Microsoft.VisualStudio.Threading.Analyzers" />
+  </ItemGroup>
+
+  <Target Name="GetVsixVersion" DependsOnTargets="GetVersion" Returns="$(VersionPrefix)" />
+
+  <Target Name="AppendVsixVersionToTargetVsixContainer" BeforeTargets="CreateVsixContainer" DependsOnTargets="GetVersion">
+    <PropertyGroup>
+      <TargetVsixContainerName>$([System.IO.Path]::ChangeExtension('$(TargetVsixContainerName)', '$(VersionPrefix).vsix'))</TargetVsixContainerName>
+      <TargetVsixContainer Condition="'$(Out)' != ''">$([System.IO.Path]::Combine('$(PackageOutputPath)', '$(TargetVsixContainerName)'))</TargetVsixContainer>
+      <TargetVsixContainer Condition="'$(Out)' == ''">$([System.IO.Path]::Combine('$(OutDir)', '$(TargetVsixContainerName)'))</TargetVsixContainer>
+    </PropertyGroup>
+  </Target>
+
+</Project>

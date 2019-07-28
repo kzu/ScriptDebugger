@@ -1,0 +1,26 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <Target Name="GetVersion" BeforeTargets="PrepareForBuild;GenerateAssemblyInfo;GetAssemblyAttributes;GetPackageVersion" DependsOnTargets="GitVersion" Returns="$(Version)">
+    <PropertyGroup>
+      <VersionPrefix>$(GitSemVerMajor).$(GitSemVerMinor).$(GitSemVerPatch)</VersionPrefix>
+      <!-- PR builds are *always* prerelease -->
+      <VersionSuffix Condition="'$(GitBranch)' == 'undefined'">-pr</VersionSuffix>
+      <!-- If still no suffix was determined, default it to the optional semver label suffix -->
+      <VersionSuffix Condition="'$(VersionSuffix)' == ''">$(GitSemVerDashLabel)</VersionSuffix>
+      <!-- Finally make up the version -->
+      <Version>$(VersionPrefix)$(VersionSuffix)</Version>
+      <PackageVersion>$(Version)</PackageVersion>
+      <InformationalVersion Condition="'$(InformationalVersion)' == ''">$(Version)-$(GitBranch)+$(GitCommit)</InformationalVersion>
+    </PropertyGroup>
+  </Target>
+
+  <Import Project="$(VsSDKInstall)\Microsoft.VSSDK.targets" Condition="'$(VsSDKInstall)' != ''" />
+
+  <PropertyGroup Condition="'$(VsSDKInstall)' != ''">
+    <!-- Set startup process to always start with the experimental instance and logging enabled -->
+    <StartAction>Program</StartAction>
+    <StartProgram>$(VsInstallRoot)\Common7\IDE\devenv.exe</StartProgram>
+    <StartArguments>/rootSuffix $(VSSDKTargetPlatformRegRootSuffix)</StartArguments>
+  </PropertyGroup>
+
+</Project>

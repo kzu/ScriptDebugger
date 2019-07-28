@@ -1,0 +1,16 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <ItemGroup>
+    <PackageReference Update="GitInfo" Version="2.0.20" />
+    <PackageReference Update="Clide" Version="3.3.3" />
+
+    <PackageReference Update="Microsoft.VisualStudio.SDK" Version="16.0.200" />
+    <PackageReference Update="Microsoft.VisualStudio.SDK.VsixSuppression" Version="14.1.37" />
+    <PackageReference Update="Microsoft.VSSDK.BuildTools" Version="16.2.3073" />
+    <PackageReference Update="Microsoft.VisualStudio.ProjectSystem.SDK" Version="16.0.374-pre" />
+    <PackageReference Update="Microsoft.VisualStudio.ProjectSystem.Managed.VS" Version="2.0.6142705" />
+    <PackageReference Update="Microsoft.VisualStudio.SDK.Analyzers" Version="15.8.*" />
+    <PackageReference Update="Microsoft.VisualStudio.Threading.Analyzers" Version="15.8.*" />
+  </ItemGroup>
+
+</Project>
